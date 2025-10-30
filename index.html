@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ism Familiya — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">Ilyos Ibragimov</h1>
+      <button class="nav-toggle" id="navToggle" aria-label="Menyu">☰</button>
+      <nav class="nav" id="mainNav">
+        <a href="#haqida">Haqida</a>
+        <a href="#loyihalar">Loyihalar</a>
+        <a href="#kontakt">+998505854979</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="haqida" class="card section">
+      <h2>Haqida</h2>
+      <p>
+        Men ct.js va Git/GitHub bo‘yicha o‘rganuvchi dasturchiman. Bu portfolio oddiy, zamonaviy va mobilga mos misol uchun yaratilgan.
+        Animatsiyalar va interaktivlik uchun kichik JavaScript funksiyalari qo‘shilgan.
+      </p>
+      <p>
+        O‘rganuvchi loyihalarimni ko‘rish va GitHub orqali boshqarish bo‘yicha tajriba orttirmoqdaman.
+      </p>
+      <button class="btn" id="moreBtn">Ko'proq ma'lumot</button>
+    </section>
+
+    <section id="loyihalar" class="section">
+      <h2>Loyihalar</h2>
+      <div class="projects">
+        <article class="project card">
+          <h3>ct.js o'yin prototipi</h3>
+          <p>ct.js yordamida kichik 2D o'yin — boshqaruv, to'siqlar va skorlash.</p>
+          <button class="btn project-btn" data-name="ct.js o'yin prototipi">Ko'rish</button>
+        </article>
+
+        <article class="project card">
+          <h3>Portfolio sahifasi</h3>
+          <p>Ushbu portfolio — HTML, CSS va JavaScript bilan yaratilgan responsiv shablon.</p>
+          <button class="btn project-btn" data-name="Portfolio sahifasi">Ko'rish</button>
+        </article>
+
+        <article class="project card">
+          <h3>Git workflow misoli</h3>
+          <p>Git va GitHub asosiy ish jarayonlari: branch, pull request va merge misollari.</p>
+          <button class="btn project-btn" data-name="Git workflow misoli">Ko'rish</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="kontakt" class="card section">
+      <h2>Kontakt</h2>
+      <p>Email: <a href="mailto:berk23019@example.com">berk23019@example.com</a></p>
+      <p>GitHub: <a href="https://github.com/berk23019-glitch" target="_blank" rel="noopener">github.com/ism</a></p>
+      <p>Agar xohlasangiz, GitHub reposiga bog'lanib, pull request yuborishingiz mumkin.</p>
+      <button class="btn" id="contactBtn">Bog'lanish</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Ism Familiya — Barcha huquqlar himoyalangan.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Yilni avtomatik qo'yish
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Oddiy interaktivlik: tugmalar alert chiqaradi
+    document.getElementById('moreBtn').addEventListener('click', function () {
+      alert("Siz haqingizda batafsil ma'lumot: o'rganishda davom etyapman — ct.js va Git/GitHub bo'yicha loyihalar ustida ishlayman.");
+    });
+
+    document.getElementById('contactBtn').addEventListener('click', function () {
+      alert("Rahmat! Iltimos, berk23019@example.com manziliga xabar yuboring yoki GitHub orqali bog'laning.");
+    });
+
+    document.querySelectorAll('.project-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var name = this.dataset.name || 'Loyiha';
+        alert(name + " haqida batafsil ko'rish hozircha namunaviy. GitHub reposiga qarang.");
+      });
+    });
+
+    // Mobil menyuni ochish/yopish
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+    navToggle.addEventListener('click', function(){
+      mainNav.classList.toggle('open');
+    });
+
+    // Smooth scroll (sodda)
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+        // mobilda menyuni yoping
+        mainNav.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
